@@ -72,6 +72,7 @@ footer {
     border-radius: 12px;
     box-shadow: 0 3px var(--grey);
     margin-top: 200px;
+    margin-bottom: 350px;
 }
   
 .btn:hover {
