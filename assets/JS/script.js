@@ -1,9 +1,9 @@
-var pageContent = document.querySelector("#page-content")
+var startQuizBtn = document.querySelector("#start-quiz");
+var test = document.querySelector("#test-content");
 
-var createQuestions = function(event) {
-    event.preventDefult();
-
-    
-}
-
-pageContent.addEventListener("click", createQuestions);
+startQuizBtn.addEventListener("click", function(){
+    var testForm = document.createElement("div");
+testForm.textContent = ("test");
+testForm.className = "test-form";
+test.appendChild(testForm)
+});

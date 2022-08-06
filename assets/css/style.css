@@ -82,6 +82,14 @@ footer {
     box-shadow: 0 0px var(--grey);
     top: 0;
 }
- 
+
+.test-form {
+    color: var(--grey);
+    padding: 15px 15px;
+    border: 2px solid var(--grey);
+    background: var(--tertiary);
+    border-radius: 12px;
+    margin-bottom: 20px;
+  }
   
 
