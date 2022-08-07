@@ -1,29 +1,79 @@
-var startQuizBtn = document.querySelector("#start-quiz");
-var test = document.querySelector("#test-content");
-var counter = 60
+var startBtn = document.getElementById("start-btn");
+var nextBtn = document.getElementById("next-btn");
+var quizContainer = document.getElementById("quiz-container");
+var questionEl = document.getElementById("question");
+var answerBtnEl = document.getElementById("answer-btns")
+
+let randomQuestion, currentquestion
+
+var questionList = [
+    {
+        question: "placeholder1",
+        answers: [
+            {text: "A1", correct: true},
+            {text: "A2", correct: false},
+            {text: "A3", correct: false},
+            {text: "A4", correct: false}
+        ]
+    },
+    {
+        question: "placeholder2",
+        answers: [
+            {text: "A1", correct: true},
+            {text: "A2", correct: false},
+            {text: "A3", correct: false},
+            {text: "A4", correct: false}
+        ]
+    },
+    {
+        question: "placeholder3",
+        answers: [
+            {text: "A1", correct: true},
+            {text: "A2", correct: false},
+            {text: "A3", correct: false},
+            {text: "A4", correct: false}
+        ]
+    }
+]
 
 
-var startQuiz = function() {
-    startQuizBtn.remove();
+function startQuiz() {
+    startBtn.classList.add("hide");
+    randomQuestion = questionList.sort(() => Math.random() -.5);
+    currentquestion = 0;
+    quizContainer.classList.remove("hide");
+    nextQuestion();
+}
 
-    var testForm = document.createElement("div");
-    testForm.textContent = ("test");
-    testForm.className = "test-form";
-    test.appendChild(testForm);
-    
-    var countdown = function() {
-    console.log(counter)
-    
+function nextQuestionBtn() {
+    currentquestion++
+    nextQuestion()
+}
 
-    counter--;
-    if(counter === 0 ) {
-        console.log("Times Up!")
-        clearInterval(countdown);
-    };
-    
+function nextQuestion() {
+    showQuestion(randomQuestion[currentquestion])
     
 }
-};
 
-var startCountdown = setInterval(countdown, 1000);
-startQuizBtn.addEventListener("click", startQuiz);
+// Todo: reset for after next button is clicked 
+
+function showQuestion(question) {
+    questionEl.innerText = question.question;
+    question.answers.forEach(answer => {
+        var button = document.createElement("button");
+        button.innerText = answer.text;
+        button.classList.add("btn");
+        
+        button.addEventListener("click", selectAnswer);
+        answerBtnEl.appendChild(button);
+    });
+}
+
+function selectAnswer(event) {
+    nextBtn.classList.remove("hide");
+    var selectedBtn = event.target;
+    console.log(selectedBtn)
+}
+
+startBtn.addEventListener("click", startQuiz);
+nextBtn.addEventListener("click", nextQuestionBtn);

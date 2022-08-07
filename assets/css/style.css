@@ -92,3 +92,7 @@ footer {
     border-radius: 5px;
     box-shadow: 0 3px;
   }
+
+  .hide {
+    display: none;
+  }
