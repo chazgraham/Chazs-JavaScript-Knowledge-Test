@@ -2,9 +2,9 @@ var startBtn = document.getElementById("start-btn");
 var nextBtn = document.getElementById("next-btn");
 var quizContainer = document.getElementById("quiz-container");
 var questionEl = document.getElementById("question");
-var answerBtnEl = document.getElementById("answer-btns")
+var answerBtnEl = document.getElementById("answer-btns");
 
-let randomQuestion, currentquestion
+let randomQuestion, currentquestion;
 
 var questionList = [
     {
@@ -46,16 +46,14 @@ function startQuiz() {
 }
 
 function nextQuestionBtn() {
-    currentquestion++
-    nextQuestion()
+    currentquestion++;
+    nextQuestion();
 }
 
 function nextQuestion() {
-    showQuestion(randomQuestion[currentquestion])
-    
+    resetQuiz();
+    showQuestion(randomQuestion[currentquestion]);
 }
-
-// Todo: reset for after next button is clicked 
 
 function showQuestion(question) {
     questionEl.innerText = question.question;
@@ -72,7 +70,14 @@ function showQuestion(question) {
 function selectAnswer(event) {
     nextBtn.classList.remove("hide");
     var selectedBtn = event.target;
-    console.log(selectedBtn)
+    console.log(selectedBtn);
+}
+
+function resetQuiz(){
+    nextBtn.classList.add("hide");
+    while (answerBtnEl.firstChild) {
+        answerBtnEl.removeChild(answerBtnEl.firstChild)
+    }
 }
 
 startBtn.addEventListener("click", startQuiz);
