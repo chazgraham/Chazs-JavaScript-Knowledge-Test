@@ -3,6 +3,9 @@ var nextBtn = document.getElementById("next-btn");
 var quizContainer = document.getElementById("quiz-container");
 var questionEl = document.getElementById("question");
 var answerBtnEl = document.getElementById("answer-btns");
+var contentContainer = document.getElementById("container");
+var saveForm = document.getElementById("save-form");
+var saveInitialsBtn = document.getElementById("save-initials")
 
 let randomQuestion, currentquestion;
 
@@ -136,7 +139,6 @@ function showQuestion(question) {
 
 // todo get the function the read the true value out of the obj
 function selectAnswer(event) {
-    nextBtn.classList.remove("hide");
     var selectedBtn = event.target;
     var correct = selectedBtn.dataset.correct;
     answerClass(document.body, correct)
@@ -144,7 +146,19 @@ function selectAnswer(event) {
         answerClass(button, button.dataset.correct);
     })
 
-    console.log(selectedBtn)
+    if (randomQuestion.length > currentquestion + 1) {
+        nextBtn.classList.remove("hide");
+    } else {
+        saveScore()
+    }
+}
+
+function saveScore() {
+    quizContainer.classList.add("hide");
+    contentContainer.classList.add("hide");
+    saveForm.classList.remove("hide");
+    saveInitialsBtn.classList.remove("hide")
+
 }
 
 function answerClass(element, correct) {
