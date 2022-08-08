@@ -5,7 +5,7 @@ var questionEl = document.getElementById("question");
 var answerBtnEl = document.getElementById("answer-btns");
 var contentContainer = document.getElementById("container");
 var saveForm = document.getElementById("save-form");
-var saveInitialsBtn = document.getElementById("save-initials")
+var saveInitialsBtn = document.getElementById("save-initials");
 
 let randomQuestion, currentquestion;
 
@@ -122,14 +122,14 @@ function nextQuestion() {
 }
 
 function showQuestion(question) {
-    questionEl.innerText = question.question 
+    questionEl.innerText = question.question;
     question.answers.forEach( function answer(answer) {
         var button = document.createElement("button");
         button.innerText = answer.text;
         button.classList.add("btn");
         
         if(answer.correct) {
-            button.dataset.correct = answer.correct
+            button.dataset.correct = answer.correct;
         }
 
         button.addEventListener("click", selectAnswer);
@@ -141,7 +141,7 @@ function showQuestion(question) {
 function selectAnswer(event) {
     var selectedBtn = event.target;
     var correct = selectedBtn.dataset.correct;
-    answerClass(document.body, correct)
+    answerClass(document.body, correct);
     Array.from(answerBtnEl.children).forEach(function button(button) {
         answerClass(button, button.dataset.correct);
     })
@@ -153,16 +153,24 @@ function selectAnswer(event) {
     }
 }
 
-function saveScore() {
+function saveScore() { 
     quizContainer.classList.add("hide");
     contentContainer.classList.add("hide");
     saveForm.classList.remove("hide");
-    saveInitialsBtn.classList.remove("hide")
+    saveInitialsBtn.classList.remove("hide");
+}
 
+function saveInitialsBtn () {
+    scoreBoard()
+}
+
+// todo: populate a list of scores when the saveInitialsBtn is clicked
+function scoreBoard() {
+    window.alert("this is a test");
 }
 
 function answerClass(element, correct) {
-    clearAnswerClass(element)
+    clearAnswerClass(element);
 
     if (correct = correct) {
         element.classList.add("correct");
@@ -183,5 +191,6 @@ function resetQuiz(){
     }
 }
 
+saveInitialsBtn.addEventListener("click", scoreBoard);
 startBtn.addEventListener("click", startQuiz);
 nextBtn.addEventListener("click", nextQuestionBtn);
