@@ -33,9 +33,72 @@ var questionList = [
             {text: "A3", correct: false},
             {text: "A4", correct: false}
         ]
+    },
+    {
+        question: "placeholder4",
+        answers: [
+            {text: "A1", correct: true},
+            {text: "A2", correct: false},
+            {text: "A3", correct: false},
+            {text: "A4", correct: false}
+        ]
+    },
+    {
+        question: "placeholder5",
+        answers: [
+            {text: "A1", correct: true},
+            {text: "A2", correct: false},
+            {text: "A3", correct: false},
+            {text: "A4", correct: false}
+        ]
+    },
+    {
+        question: "placeholder6",
+        answers: [
+            {text: "A1", correct: true},
+            {text: "A2", correct: false},
+            {text: "A3", correct: false},
+            {text: "A4", correct: false}
+        ]
+    },
+    {
+        question: "placeholder7",
+        answers: [
+            {text: "A1", correct: true},
+            {text: "A2", correct: false},
+            {text: "A3", correct: false},
+            {text: "A4", correct: false}
+        ]
+    },
+    {
+        question: "placeholder8",
+        answers: [
+            {text: "A1", correct: true},
+            {text: "A2", correct: false},
+            {text: "A3", correct: false},
+            {text: "A4", correct: false}
+        ]
+    },
+    {
+        question: "placeholder9",
+        answers: [
+            {text: "A1", correct: true},
+            {text: "A2", correct: false},
+            {text: "A3", correct: false},
+            {text: "A4", correct: false}
+        ]
+    },
+    {
+        question: "placeholder10",
+        answers: [
+            {text: "A1", correct: true},
+            {text: "A2", correct: false},
+            {text: "A3", correct: false},
+            {text: "A4", correct: false}
+        ]
     }
-]
 
+]
 
 function startQuiz() {
     startBtn.classList.add("hide");
@@ -67,10 +130,32 @@ function showQuestion(question) {
     });
 }
 
+// todo get the function the read the true value out of the obj
 function selectAnswer(event) {
     nextBtn.classList.remove("hide");
     var selectedBtn = event.target;
-    console.log(selectedBtn);
+    var correct = selectedBtn.dataset.correct;
+    answerClass(document.body, correct)
+    Array.from(answerBtnEl.children).forEach(button => {
+        answerClass(button, button.dataset.correct);
+    })
+    
+    console.log(selectedBtn)
+}
+
+function answerClass(element, correct) {
+    clearAnswerClass(element)
+
+    if (correct = correct) {
+        element.classList.add("correct");
+    } else {
+        element.classList.add("wrong");
+    }
+}
+
+function clearAnswerClass(element) {
+    element.classList.remove("correct");
+    element.classList.remove("wrong")
 }
 
 function resetQuiz(){
