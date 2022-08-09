@@ -6,6 +6,8 @@ var answerBtnEl = document.getElementById("answer-btns");
 var contentContainer = document.getElementById("container");
 var saveForm = document.getElementById("save-form");
 var saveInitialsBtn = document.getElementById("save-initials");
+var initialsList = document.querySelector("#initials-list");
+var scoreBoardTitle = document.getElementById("score-title");
 
 let randomQuestion, currentquestion;
 
@@ -137,7 +139,7 @@ function showQuestion(question) {
     });
 }
 
-// todo get the function the read the true value out of the obj
+
 function selectAnswer(event) {
     var selectedBtn = event.target;
     var correct = selectedBtn.dataset.correct;
@@ -165,8 +167,26 @@ function saveInitialsBtn () {
 }
 
 // todo: populate a list of scores when the saveInitialsBtn is clicked
-function scoreBoard() {
-    window.alert("this is a test");
+function scoreBoard(event) {
+    event.preventDefault()
+    var initialsInput = document.querySelector("input[name='initials']").value;
+
+    saveForm.classList.add("hide");
+    saveInitialsBtn.classList.add("hide");
+    scoreBoardTitle.classList.remove("hide")
+    
+    var userInitials = document.createElement("li");
+    userInitials.className = "initial";
+    
+    var initialsInfoEl = document.createElement("div")
+    initialsInfoEl.className = "initials-info"
+    initialsInfoEl.innerText = initialsInput
+
+    console.log(userInitials)
+
+    userInitials.appendChild(initialsInfoEl)
+    initialsList.appendChild(userInitials)
+
 }
 
 function answerClass(element, correct) {
