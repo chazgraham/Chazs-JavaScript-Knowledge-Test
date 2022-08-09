@@ -182,6 +182,8 @@ function scoreBoard(event) {
     initialsInfoEl.className = "initials-info"
     initialsInfoEl.innerText = initialsInput
 
+    // TODO: make a restart button 
+
     console.log(userInitials)
 
     userInitials.appendChild(initialsInfoEl)
@@ -210,6 +212,10 @@ function resetQuiz(){
         answerBtnEl.removeChild(answerBtnEl.firstChild)
     }
 }
+
+// TODO: make a timer
+// TODO: make a function that keeps track of right and wrong answers
+// TODO: make save user score to local data
 
 saveInitialsBtn.addEventListener("click", scoreBoard);
 startBtn.addEventListener("click", startQuiz);
