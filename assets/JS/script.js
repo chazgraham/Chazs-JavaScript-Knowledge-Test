@@ -13,96 +13,95 @@ let randomQuestion, currentquestion;
 
 var questionList = [
     {
-        question: "placeholder1",
+        question: "What does isNaN stand for?",
         answers: [
-            {text: "A1", correct: true},
-            {text: "A2", correct: false},
-            {text: "A3", correct: false},
-            {text: "A4", correct: false}
+            {text: "Is not a number", correct: true},
+            {text: "Is a number", correct: false},
+            {text: "Is number after number", correct: false},
+            {text: "Is not action number", correct: false}
         ]
     },
     {
-        question: "placeholder2",
+        question: " Which symbol is used for single line comments in Javascript?",
         answers: [
-            {text: "A1", correct: true},
-            {text: "A2", correct: false},
-            {text: "A3", correct: false},
-            {text: "A4", correct: false}
+            {text: "$", correct: false},
+            {text: "//", correct: true},
+            {text: "/*", correct: false},
+            {text: "!", correct: false}
         ]
     },
     {
-        question: "placeholder3",
+        question: "How can generic objects be created?",
         answers: [
-            {text: "A1", correct: true},
-            {text: "A2", correct: false},
-            {text: "A3", correct: false},
-            {text: "A4", correct: false}
+            {text: "function I ();", correct: false},
+            {text: "object() = I ", correct: false},
+            {text: "var I = new object();", correct: true},
+            {text: "if object() = I;", correct: false}
         ]
     },
     {
-        question: "placeholder4",
+        question: "Is JavaScript case sensitive?",
         answers: [
-            {text: "A1", correct: true},
-            {text: "A2", correct: false},
-            {text: "A3", correct: false},
-            {text: "A4", correct: false}
+            {text: "only funtions are case sensitive", correct: false},
+            {text: "No", correct: false},
+            {text: "sometimes", correct: false},
+            {text: "Yes", correct: true}
         ]
     },
     {
-        question: "placeholder5",
+        question: "What does DOM stand for in JavaScript?",
         answers: [
-            {text: "A1", correct: true},
-            {text: "A2", correct: false},
-            {text: "A3", correct: false},
-            {text: "A4", correct: false}
+            {text: "Domain of model", correct: false},
+            {text: "Document Object Model", correct: true},
+            {text: "Data Object Modle", correct: false},
+            {text: "Direct Origin Mode", correct: false}
         ]
     },
     {
-        question: "placeholder6",
+        question: "Which company developed JavaScript?",
         answers: [
-            {text: "A1", correct: true},
-            {text: "A2", correct: false},
-            {text: "A3", correct: false},
-            {text: "A4", correct: false}
+            {text: "Netscape", correct: true},
+            {text: "Sega", correct: false},
+            {text: "Apple", correct: false},
+            {text: "Microsoft", correct: false}
         ]
     },
     {
-        question: "placeholder7",
+        question: "What allows the user to enter input by providing a text box",
         answers: [
-            {text: "A1", correct: true},
-            {text: "A2", correct: false},
-            {text: "A3", correct: false},
-            {text: "A4", correct: false}
+            {text: "log", correct: false},
+            {text: "alert", correct: false},
+            {text: "prompt", correct: true},
+            {text: "add", correct: false}
         ]
     },
     {
-        question: "placeholder8",
+        question: "How can you convert the string of any base to an integer in JavaScript?",
         answers: [
-            {text: "A1", correct: true},
-            {text: "A2", correct: false},
-            {text: "A3", correct: false},
-            {text: "A4", correct: false}
+            {text: "num.convert", correct: false},
+            {text: "string()number", correct: false},
+            {text: "string = this is a number", correct: false},
+            {text: "parseInt() function", correct: true}
         ]
     },
     {
-        question: "placeholder9",
+        question: "What is a strict equality operator",
         answers: [
-            {text: "A1", correct: true},
-            {text: "A2", correct: false},
-            {text: "A3", correct: false},
-            {text: "A4", correct: false}
+            {text: "==", correct: false},
+            {text: "=+", correct: false},
+            {text: "===", correct: true},
+            {text: "=", correct: false}
         ]
     },
     {
-        question: "placeholder10",
+        question: "What only checks for equality in value",
         answers: [
-            {text: "A1", correct: false},
-            {text: "A2", correct: false},
-            {text: "A3", correct: true},
-            {text: "A4", correct: false}
+            {text: "===", correct: false},
+            {text: "=", correct: false},
+            {text: "==", correct: true},
+            {text: "=+", correct: false}
         ]
     }
-
 ]
 
 function startQuiz() {
@@ -139,7 +138,6 @@ function showQuestion(question) {
     });
 }
 
-
 function selectAnswer(event) {
     var selectedBtn = event.target;
     var correct = selectedBtn.dataset.correct;
@@ -153,42 +151,6 @@ function selectAnswer(event) {
     } else {
         saveScore()
     }
-}
-
-function saveScore() { 
-    quizContainer.classList.add("hide");
-    contentContainer.classList.add("hide");
-    saveForm.classList.remove("hide");
-    saveInitialsBtn.classList.remove("hide");
-}
-
-function saveInitialsBtn () {
-    scoreBoard()
-}
-
-// todo: populate a list of scores when the saveInitialsBtn is clicked
-function scoreBoard(event) {
-    event.preventDefault()
-    var initialsInput = document.querySelector("input[name='initials']").value;
-
-    saveForm.classList.add("hide");
-    saveInitialsBtn.classList.add("hide");
-    scoreBoardTitle.classList.remove("hide")
-    
-    var userInitials = document.createElement("li");
-    userInitials.className = "initial";
-    
-    var initialsInfoEl = document.createElement("div")
-    initialsInfoEl.className = "initials-info"
-    initialsInfoEl.innerText = initialsInput
-
-    // TODO: make a restart button 
-
-    console.log(userInitials)
-
-    userInitials.appendChild(initialsInfoEl)
-    initialsList.appendChild(userInitials)
-
 }
 
 function answerClass(element, correct) {
@@ -211,6 +173,37 @@ function resetQuiz(){
     while (answerBtnEl.firstChild) {
         answerBtnEl.removeChild(answerBtnEl.firstChild)
     }
+}
+
+function saveScore() { 
+    quizContainer.classList.add("hide");
+    contentContainer.classList.add("hide");
+    saveForm.classList.remove("hide");
+    saveInitialsBtn.classList.remove("hide");
+}
+
+function scoreBoard(event) {
+    event.preventDefault()
+    var initialsInput = document.querySelector("input[name='initials']").value;
+
+    saveForm.classList.add("hide");
+    saveInitialsBtn.classList.add("hide");
+    scoreBoardTitle.classList.remove("hide");
+    startBtn.classList.remove("hide")
+    startBtn.textContent = ("restart")
+    contentContainer.classList.remove("hide")
+
+    var userInitials = document.createElement("li");
+    userInitials.className = "initial";
+    
+    var initialsInfoEl = document.createElement("div");
+    initialsInfoEl.className = "initials-info";
+    initialsInfoEl.innerText = initialsInput;
+
+    console.log(userInitials);
+
+    userInitials.appendChild(initialsInfoEl);
+    initialsList.appendChild(userInitials);
 }
 
 // TODO: make a timer
