@@ -130,6 +130,21 @@ form input {
     font-size: 18px;
 }
 
+aside {
+    background-color: var(--neutral);
+    margin-bottom: 0px;
+}
+
+.timer {
+    float: right;
+    margin-right: 50px;
+    margin-bottom: 0px;
+}
+
+.timer p {
+    margin-bottom: 0px;
+}
+
 .correct {
     background-color: green;
 }

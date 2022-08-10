@@ -1,15 +1,23 @@
+// buttons
 var startBtn = document.getElementById("start-btn");
 var nextBtn = document.getElementById("next-btn");
+var answerBtnEl = document.getElementById("answer-btns");
+var saveInitialsBtn = document.getElementById("save-initials");
+
 var quizContainer = document.getElementById("quiz-container");
 var questionEl = document.getElementById("question");
-var answerBtnEl = document.getElementById("answer-btns");
 var contentContainer = document.getElementById("container");
 var saveForm = document.getElementById("save-form");
-var saveInitialsBtn = document.getElementById("save-initials");
 var initialsList = document.querySelector("#initials-list");
 var scoreBoardTitle = document.getElementById("score-title");
 
+// combined Questions list
 let randomQuestion, currentquestion;
+
+
+// timer
+let time = 60;
+var counter = document.getElementById("time")
 
 var questionList = [
     {
@@ -104,11 +112,20 @@ var questionList = [
     }
 ]
 
+function countDown() {
+    seconds = time;
+    seconds = seconds < 10 ? "0" + seconds : seconds
+    counter.innerHTML = seconds
+    time--;
+}
+
+
 function startQuiz() {
     startBtn.classList.add("hide");
     randomQuestion = questionList.sort(() => Math.random() -.5);
     currentquestion = 0;
     quizContainer.classList.remove("hide");
+    setInterval(countDown, 1000)
     nextQuestion();
 }
 
