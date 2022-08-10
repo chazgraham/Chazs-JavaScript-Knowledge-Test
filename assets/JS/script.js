@@ -14,11 +14,6 @@ var scoreBoardTitle = document.getElementById("score-title");
 // combined Questions list
 let randomQuestion, currentquestion;
 
-
-// timer
-let time = 60;
-var counter = document.getElementById("time")
-
 var questionList = [
     {
         question: "What does isNaN stand for?",
@@ -112,20 +107,34 @@ var questionList = [
     }
 ]
 
-function countDown() {
-    seconds = time;
-    seconds = seconds < 10 ? "0" + seconds : seconds
-    counter.innerHTML = seconds
-    time--;
-}
-
-
 function startQuiz() {
     startBtn.classList.add("hide");
     randomQuestion = questionList.sort(() => Math.random() -.5);
     currentquestion = 0;
     quizContainer.classList.remove("hide");
-    setInterval(countDown, 1000)
+
+    time = 60;
+    var startTimer = setInterval(countDown, 1000);
+    var counter = document.getElementById("time");
+
+    // timer function
+    function countDown() {
+        seconds = time;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        counter.innerHTML = seconds;
+        time--;
+    
+        if(time < 0) {
+            console.log("times up");
+            clearInterval(startTimer);
+            saveScore();
+        }
+        if (randomQuestion.length > currentquestion + 1) {     
+        } else {
+            clearInterval(startTimer);
+        }
+    }
+    
     nextQuestion();
 }
 
@@ -175,7 +184,9 @@ function answerClass(element, correct) {
 
     if (correct = correct) {
         element.classList.add("correct");
+        time = time + 3
     } else {
+        time = time - 2;
         element.classList.add("wrong");
     }
 }
@@ -216,6 +227,12 @@ function scoreBoard(event) {
     var initialsInfoEl = document.createElement("div");
     initialsInfoEl.className = "initials-info";
     initialsInfoEl.innerText = initialsInput;
+
+    if(initialsInput < 2) {
+        alert("Please Enter initials")
+        saveScore()
+        remove()
+    }
 
     console.log(userInitials);
 
