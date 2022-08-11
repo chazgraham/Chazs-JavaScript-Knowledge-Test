@@ -135,6 +135,8 @@ aside {
     margin-bottom: 0px;
 }
 
+
+
 .timer {
     float: right;
     margin-right: 50px;
@@ -155,4 +157,15 @@ aside {
 
 .hide {
     display: none;
+}
+
+@media screen and (max-width: 980px) {
+    .page-content{
+        display: inline;
+    }
+
+    .scorebord {
+        margin-bottom: 10px;
+    }
+  
   }

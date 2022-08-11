@@ -253,19 +253,49 @@ function scoreBoard(event) {
     if(initialsInput < 2) {
         alert("Please Enter initials")
         saveScore()
-        remove()
+        // uses error code so it doesnt push empty form up
+        initialsInput.remove()
     }
+    saveQuizData.push(initialsInfoEl.innerText)
 
     console.log(userInitials);
 
     userInitials.appendChild(initialsInfoEl);
     initialsList.appendChild(userInitials);
+    saveUserData()
 }
 
-// TODO: make a timer
-// TODO: make a function that keeps track of right and wrong answers
-// TODO: make save user score to local data
+var saveQuizData= [];
+
+var saveUserData = function() {
+    localStorage.setItem("initials-info", JSON.stringify(saveQuizData));
+}
+
+var loadUserData = function() {
+    var savedUserData = localStorage.getItem("initials-info");
+    // if there are no tasks, set tasks to an empty array and return out of the function
+    if (!savedUserData) {
+      return false;
+    }
+    console.log("Saved user found!");
+    // else, load up saved tasks
+  
+    // parse into array of objects
+    savedUserData = JSON.parse(savedUserData);
+  
+    var oldScore = document.createElement("li");
+    oldScore.className = "initial";
+    
+    var initialData = document.createElement("div");
+    initialData.className = "initials-info";
+    initialData.innerText = savedUserData
+        
+    oldScore.appendChild(initialData);
+    initialsList.appendChild(oldScore);   
+};
 
 saveInitialsBtn.addEventListener("click", scoreBoard);
 startBtn.addEventListener("click", startQuiz);
 nextBtn.addEventListener("click", nextQuestionBtn);
+
+loadUserData()
