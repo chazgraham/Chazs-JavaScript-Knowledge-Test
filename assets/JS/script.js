@@ -239,61 +239,35 @@ function scoreBoard(event) {
     saveForm.classList.add("hide");
     saveInitialsBtn.classList.add("hide");
     scoreBoardTitle.classList.remove("hide");
-    startBtn.classList.remove("hide")
-    startBtn.textContent = ("restart")
     contentContainer.classList.remove("hide")
-
-    var userInitials = document.createElement("li");
-    userInitials.className = "initial";
-    
-    var initialsInfoEl = document.createElement("div");
-    initialsInfoEl.className = "initials-info";
-    initialsInfoEl.innerText = "Name:" + initialsInput + "    Score:" + score + "/10";
 
     if(initialsInput < 2) {
         alert("Please Enter initials")
-        saveScore()
         // uses error code so it doesnt push empty form up
         initialsInput.remove()
+    } else {
+        saveUserData()
+        window.location.reload()
     }
-    saveQuizData.push(initialsInfoEl.innerText)
-
-    console.log(userInitials);
-
-    userInitials.appendChild(initialsInfoEl);
-    initialsList.appendChild(userInitials);
-    saveUserData()
 }
 
-var saveQuizData = [];
-
 var saveUserData = function() {
-    var initialsInput = document.querySelector("input[name='initials']").value;
+    var initialsInput = document.querySelector("input[name='initials']").value + " Score:" + score + "/10";
     let key = Math.random() + Date.now();
     localStorage.setItem(key, JSON.stringify(initialsInput));
 }
 
 var loadUserData = function() {
-    var savedUserData = localStorage.getItem("initials-info");
-    // if there are no tasks, set tasks to an empty array and return out of the function
-    if (!savedUserData) {
-      return false;
-    }
-    console.log("Saved user found!");
-    // else, load up saved tasks
-  
-    // parse into array of objects
-    savedUserData = JSON.parse(savedUserData);
-  
-    var oldScore = document.createElement("li");
-    oldScore.className = "initial";
-    
-    var initialData = document.createElement("div");
-    initialData.className = "initials-info";
-    initialData.innerText = savedUserData
+    for(var i=0, len=localStorage.length; i<len; i++) {
+        var key = localStorage.key(i);
+        var score = localStorage.getItem(key)
         
-    oldScore.appendChild(initialData);
-    initialsList.appendChild(oldScore);   
+        var oldScore = document.createElement("li");
+        oldScore.className = "initial";
+        oldScore.innerText = score
+       
+        initialsList.appendChild(oldScore);
+    }  
 };
 
 saveInitialsBtn.addEventListener("click", scoreBoard);
