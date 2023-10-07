@@ -265,10 +265,12 @@ function scoreBoard(event) {
     saveUserData()
 }
 
-var saveQuizData= [];
+var saveQuizData = [];
 
 var saveUserData = function() {
-    localStorage.setItem("initials-info", JSON.stringify(saveQuizData));
+    var initialsInput = document.querySelector("input[name='initials']").value;
+    let key = Math.random() + Date.now();
+    localStorage.setItem(key, JSON.stringify(initialsInput));
 }
 
 var loadUserData = function() {
