@@ -252,7 +252,7 @@ function scoreBoard(event) {
 }
 
 var saveUserData = function() {
-    var initialsInput = document.querySelector("input[name='initials']").value + " Score:" + score + "/10";
+    var initialsInput = document.querySelector("input[name='initials']").value + " " +score + "/10";
     let key = Math.random() + Date.now();
     localStorage.setItem(key, JSON.stringify(initialsInput));
 }
