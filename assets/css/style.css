@@ -35,6 +35,15 @@ p,
 li {
     font-size: 1.6rem;
 }
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    color: black;
+}
   
 footer {
     width: 100%;
